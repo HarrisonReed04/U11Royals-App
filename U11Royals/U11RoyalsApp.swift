@@ -11,7 +11,8 @@ import SwiftUI
 struct U11RoyalsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
+            MainView()
+                .background(Color.ui.darkmode)
     }
+}
 }
