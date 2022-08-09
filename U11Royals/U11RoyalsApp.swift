@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct U11RoyalsApp: App {
+
+    
     var body: some Scene {
+        
         WindowGroup {
             MainView()
-                .background(Color.ui.darkmode)
-    }
+                .preferredColorScheme(.dark)
+     }
 }
 }

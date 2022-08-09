@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		840E6B13289DB4C50062F0A3 /* SquadlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E6B12289DB4C50062F0A3 /* SquadlistView.swift */; };
-		840E6B17289DFAAB0062F0A3 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E6B16289DFAAB0062F0A3 /* ResultView.swift */; };
 		84785D8F289D6A70002ABBBA /* U11RoyalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84785D8E289D6A70002ABBBA /* U11RoyalsApp.swift */; };
 		84785D93289D6A70002ABBBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84785D92289D6A70002ABBBA /* Assets.xcassets */; };
 		84785D96289D6A70002ABBBA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84785D95289D6A70002ABBBA /* Preview Assets.xcassets */; };
@@ -20,7 +19,6 @@
 
 /* Begin PBXFileReference section */
 		840E6B12289DB4C50062F0A3 /* SquadlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadlistView.swift; sourceTree = "<group>"; };
-		840E6B16289DFAAB0062F0A3 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		84785D8B289D6A70002ABBBA /* U11Royals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = U11Royals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84785D8E289D6A70002ABBBA /* U11RoyalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U11RoyalsApp.swift; sourceTree = "<group>"; };
 		84785D92289D6A70002ABBBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 				84785DA2289D9C63002ABBBA /* MainView.swift */,
 				840E6B12289DB4C50062F0A3 /* SquadlistView.swift */,
 				84785D9C289D6C74002ABBBA /* HomePage.swift */,
-				840E6B16289DFAAB0062F0A3 /* ResultView.swift */,
 				84785D9E289D6D28002ABBBA /* MatchesView.swift */,
 				84785DA0289D745D002ABBBA /* StatsView.swift */,
 				84785D92289D6A70002ABBBA /* Assets.xcassets */,
@@ -158,7 +155,6 @@
 				84785D9D289D6C74002ABBBA /* HomePage.swift in Sources */,
 				84785DA3289D9C63002ABBBA /* MainView.swift in Sources */,
 				84785D8F289D6A70002ABBBA /* U11RoyalsApp.swift in Sources */,
-				840E6B17289DFAAB0062F0A3 /* ResultView.swift in Sources */,
 				840E6B13289DB4C50062F0A3 /* SquadlistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

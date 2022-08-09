@@ -7,9 +7,31 @@
 
 import SwiftUI
 
-struct SquadlistView: View {
+struct FullScreenModalView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.primary.edgesIgnoringSafeArea(.all)
+            Button("Dismiss Large") {
+                presentationMode.wrappedValue.dismiss()
+            }
+            .background(Color.ui.darkmode)
+            .foregroundColor(.white)
+        }
+        .background(Color.ui.darkmode, ignoresSafeAreaEdges: .all)
+        
+        
+    }
+}
+
+struct SquadlistView: View {
+    @State private var isPresented = false
+    var body: some View {
+        Button("Present Mode") {
+            isPresented.toggle()
+        }
+        .fullScreenCover(isPresented: $isPresented, content: FullScreenModalView.init)
     }
 }
 

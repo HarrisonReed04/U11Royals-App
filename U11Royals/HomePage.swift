@@ -14,6 +14,7 @@ struct HomePage: View {
     let lastfive : [String: String] = ["Winchester City Red":"L","Stoneham Pumas":"W","Stoneham Panthers":"D","Totton":"L","Southside":"D"]
     let lastcpotm = "Marcus"
     let lastppotm = "Tuula"
+    let stat2 = "Franklyn (3)"
     var body: some View {
         
         VStack {
@@ -34,6 +35,7 @@ struct HomePage: View {
             
             HStack{
                 Text("Recent Form")
+                    .font(.system(size:20, weight:.semibold))
                     .frame(width:200, alignment: .leading)
                     .padding()
                 Circle()
@@ -57,57 +59,107 @@ struct HomePage: View {
 
             VStack{
                 Text("Upcoming Fixture")
+                    .font(.system(size:18, weight:.semibold))
                     .frame(width:330, alignment: .leading)
                 ZStack{
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.purple)
-                        .frame(width:330, height:90)
-                    HStack(alignment: .top) {
+                    HStack {
                         Text("Opponents:")
-                            .frame(width:330/2 ,alignment: .trailing)
-                            
-                        Text("Testing Opps")
+                            .font(.system(size:18, weight:.bold))
+                            .padding(.leading, 10)
+                            Spacer()
+                        Text("Winchester City Red")
+                            .padding(.trailing, 10)
+                        
+                    }.frame(width: 330)
+                        .offset(y:-30)
+                    HStack {
+                        Text("Date:")
+                            .font(.system(size:18, weight:.bold))
+                            .padding(.leading, 10)
+                            Spacer()
+                        Text("09/08/2022")
+                            .padding(.trailing, 10)
+                    }.offset(y:-10)
+                    
+                    HStack {
+                        Text("Venue:")
+                            .font(.system(size:18, weight:.bold))
+                            .padding(.leading, 10)
+                            Spacer()
+                        Text("Stoneham Lane")
+                            .padding(.trailing, 10)
+                    }.offset(y:10)
+                    
+                    HStack {
+                        Text("Kick Off:")
+                            .font(.system(size:18, weight:.bold))
+                            .padding(.leading,10)
+                        Spacer()
+                        Text("9:00AM")
+                            .padding(.trailing, 10)
+                    }.offset(y:30)
+                    
+                    HStack{
                         
                     }
-                    }
+                    
+                }.frame(width:330,height:90)
                 }
             
             
             
             Text("Last Match")
-                .frame(width: 330, height: 30, alignment: .leading)
+                .font(.system(size:18, weight:.semibold))
+                .frame(width:330,alignment: .leading)
             ZStack{
                 RoundedRectangle(cornerRadius:10)
                     .fill(deccolor())
                     .frame(width: 330, height:60)
                     .padding([.trailing, .leading])
-                VStack{
-                    HStack{
-                    Text("Opponents: ")
-                            .padding(.leading)
-                            .frame(alignment: .leading)
-                            .offset(x:20, y:-15)
-                        Spacer()
-                        Text("\(prevopps())")
-                            .scaledToFit()
-                            .offset(x:-40, y:-15)
-                    }
+                if (deccolor() == .red) {
+                    Text("L")
+                        .font(.system(size: 36, weight:.semibold))
+                        .frame(width:90)
+                        .opacity(0.3)
+                } else { if (deccolor() == .green) {
+                    Text("W")
+                        .font(.system(size: 36, weight:.semibold))
+                        .frame(width:90)
+                        .opacity(0.3)
+                } else {
+                    Text("D")
+                        .font(.system(size: 36, weight:.semibold))
+                        .frame(width:90)
+                        .opacity(0.3)
+                    
                 }
-                VStack{
+                }
+
+                HStack{
+                    Text("Opponents:")
+                        .padding(.leading,25)
+                        .font(.system(size:18,weight:.semibold))
+                    Spacer()
+                    Text("\(prevopps())")
+                        .padding(.trailing,30)
+                }
+                .offset(y:-15)
+
                     HStack{
                     Text("Score: ")
-                        .padding(.leading)
-                        .frame(alignment: .leading)
-                        .offset(x:20, y:15)
+                            .padding(.leading, 25)
+                            .font(.system(size:18,weight:.semibold))
                     Spacer()
                     Text("\(prevscore())")
-                            .padding(.leading)
-                            .frame(alignment:.leading)
-                            .offset(x:-40, y:15)
+                            .padding(.trailing,30)
+
                     }
-                }
-                }
-            .offset(y:8)
+                    .offset(y:15)
+            }
+            .frame(width:330,height:60)
+            .offset(y:-5)
             ZStack{
                 RoundedRectangle(cornerRadius:10)
                     .fill(.gray)
@@ -125,38 +177,47 @@ struct HomePage: View {
                     .foregroundColor(.white)
             }
             }
+                .frame(width:330,height:40)
+                .offset(y:-8)
             
             Text("Team Stats")
+                .font(.system(size:18, weight:.semibold))
                 .frame(width:330, height: 30, alignment: .leading)
-                .padding([.top])
+    
             HStack {
                 ZStack{
                     RoundedRectangle(cornerRadius:15)
                         .fill(.purple)
                         .frame(width:105,height:105
                         )
-                    Text("Goals\n  For:")
+                    Text("   Q With\nmost goals")
+                        .font(.system(size:18,weight:.semibold))
                         .offset(y:-20)
                     Spacer()
-                    Text("32")
+                    Text("Q4")
+                        .font(.system(size:20))
                         .offset(y:20)
                 }
                 ZStack{
                     RoundedRectangle(cornerRadius:15)
                         .fill(.purple)
                         .frame(width:105, height:105)
-                    Text("  Goals\nAgainst:")
+                    Text(" Most\nPOTM:")
+                        .font(.system(size:18,weight:.semibold))
                         .offset(y:-20)
-                    Text("12")
+                    Text("\(stat2)")
+                        .font(.system(size:fontsize(str:stat2)))
                         .offset(y:20)
                 }
                 ZStack{
                     RoundedRectangle(cornerRadius:15)
                         .fill(.purple)
                         .frame(width:105, height:105)
-                    Text("     Goal\nDifference")
+                    Text("      Goal\nDifference")
+                        .font(.system(size:18, weight:.semibold))
                         .offset(y:-20)
                     Text("+20")
+                        .font(.system(size:20))
                         .offset(y:20)
                 }
             }
@@ -200,6 +261,14 @@ struct HomePage: View {
             return "Errored"
         }
     }
+    func fontsize (str:String) -> Double {
+        if (str.count > 10) {
+            return 18
+        } else {
+            return 20
+        }
+    }
+    
 }
 
 
