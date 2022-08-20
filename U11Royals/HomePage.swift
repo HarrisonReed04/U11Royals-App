@@ -9,15 +9,29 @@ import SwiftUI
 
 struct HomePage: View {
     let league = "Blue 1"
-    let prevmatch : [String : String] = ["Result":"3-1", "Team Name":"Winchester City Reds", "W/D/L":"L"]
     let teamstats : [String: String] = ["goal_difference":"30"]
     let lastfive : [String: String] = ["Winchester City Red":"L","Stoneham Pumas":"W","Stoneham Panthers":"D","Totton":"L","Southside":"D"]
     let lastcpotm = "Marcus"
     let lastppotm = "Tuula"
     let stat2 = "Franklyn (3)"
+    @State private var isLoading = true
+    @State var backmatch = [prevmatch]()
+    @State var forwardmatch = [upcomingmatch]()
+    @State var generalstats = [genstats]()
     var body: some View {
-        
         VStack {
+            if isLoading == true {
+                Spacer()
+                ProgressView()
+                List {
+                    
+                }
+                .task {
+                    await loadHomePage()
+                }
+            }
+
+            if isLoading == false {
             HStack {
                 Image("stoneham")
                     .clipShape(Circle())
@@ -26,7 +40,7 @@ struct HomePage: View {
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
-                    Text("Current League: \(league)")
+                    Text("Current League: \(generalstats[0].league)")
                         .foregroundColor(.white)
                 }
             }
@@ -38,21 +52,12 @@ struct HomePage: View {
                     .font(.system(size:20, weight:.semibold))
                     .frame(width:200, alignment: .leading)
                     .padding()
-                Circle()
-                    .fill(.green)
-                    .frame(width: 15, height: 15, alignment: .trailing)
-                Circle()
-                    .fill(.red)
-                    .frame(width: 15, height: 15, alignment: .trailing)
-                Circle()
-                    .fill(.gray)
-                    .frame(width: 15, height: 15, alignment: .trailing)
-                Circle()
-                    .fill(.green)
-                    .frame(width: 15, height: 15, alignment: .trailing)
-                Circle()
-                    .fill(.red)
-                    .frame(width:15, height: 15, alignment: .trailing)
+                ForEach(backmatch, id:\.log_id) {match in
+                    Circle()
+                        .fill(formColor(winlose: match.winlose))
+                        .frame(width: 15, height: 15, alignment: .trailing)
+
+                }
                 
                 
             }.padding(.trailing)
@@ -142,7 +147,7 @@ struct HomePage: View {
                         .padding(.leading,25)
                         .font(.system(size:18,weight:.semibold))
                     Spacer()
-                    Text("\(prevopps())")
+                    Text("\(backmatch[0].team_name)")
                         .padding(.trailing,30)
                 }
                 .offset(y:-15)
@@ -152,7 +157,7 @@ struct HomePage: View {
                             .padding(.leading, 25)
                             .font(.system(size:18,weight:.semibold))
                     Spacer()
-                    Text("\(prevscore())")
+                        Text("\(backmatch[0].result)")
                             .padding(.trailing,30)
 
                     }
@@ -222,16 +227,29 @@ struct HomePage: View {
                 }
             }
             Spacer()
+                Button(action: {
+                    Task {
+                        await loadHomePage()
+                    }
+                }, label: {
+                    Text("Refresh").font(.system(size: 18))
+                        .padding()
+                        .frame(width: 350, height:30)
+                        .background(RoundedRectangle(cornerRadius:8).fill(Color.purple))
+                        
+                })
         }
-        
+        }
         .background(Color.ui.darkmode)
         .foregroundColor(.white)
+        
     }
     
     func deccolor () -> Color {
-        if (prevmatch["W/D/L"] == "W") {
+        let _ = print(backmatch)
+        if (backmatch[0].winlose == "w") {
             return .green
-        } else { if (prevmatch["W/D/L"] == "D") {
+        } else { if (backmatch[0].winlose == "d") {
             return .gray
         } else {
             return .red
@@ -245,22 +263,7 @@ struct HomePage: View {
             return .green
         }
     }
-    func prevscore () -> String {
-        if (prevmatch["Result"] != nil) {
-            let prevscores:String? = prevmatch["Result"]
-            return prevscores!
-        } else {
-            return "Errored"
-        }
-    }
-    func prevopps () -> String {
-        if (prevmatch["Team Name"] != nil) {
-            let prevopponentsname:String? = prevmatch["Team Name"]
-            return prevopponentsname!
-        } else {
-            return "Errored"
-        }
-    }
+
     func fontsize (str:String) -> Double {
         if (str.count > 10) {
             return 18
@@ -269,7 +272,85 @@ struct HomePage: View {
         }
     }
     
-}
+    struct homepage: Codable {
+        let general : [genstats]
+        let lastfive: [prevmatch]
+        let upcoming_match: [upcomingmatch]
+    }
+    
+    struct genstats : Codable {
+        let league : String
+    }
+    
+    struct prevmatch: Codable {
+        let log_id : Int
+        let team_name : String
+        let date : String
+        let kickoff : String
+        let venue : String
+        let homeside : String
+        let result : String
+        let winlose: String
+        let total_goals_for : Int
+        let total_goals_against : Int
+        let q1goalsfor : Int
+        let q1goalsagainst : Int
+        let q2goalsfor : Int
+        let q2goalsagainst : Int
+        let q3goalsfor : Int
+        let q3goalsagainst : Int
+        let q4goalsfor : Int
+        let q4goalsagainst : Int
+        let cpotm : String
+        let ppotm: String
+    }
+    
+    struct upcomingmatch: Codable {
+        let log_id : Int
+        let team_name : String
+        let date : String
+        let kickoff : String
+        let venue : String
+        let homeside : String
+    }
+    
+    
+    func loadHomePage() async {
+        isLoading = true
+            guard let url = URL(string:"https://api.hreed.co.uk/homepage") else {
+                return
+            }
+            do{
+                let (data, _) = try await URLSession.shared.data(from: url)
+                let DecodedResponse = try JSONDecoder().decode(homepage.self, from: data)
+                    generalstats = DecodedResponse.general
+                    backmatch = DecodedResponse.lastfive
+                    forwardmatch = DecodedResponse.upcoming_match
+                isLoading = false
+            } catch let jsonError as NSError{
+                print("JSON decode failed: \(jsonError.debugDescription)")
+                return
+            }
+    }
+            
+    func formColor(winlose:String) -> Color {
+        switch winlose{
+        case "w":
+            return .green
+        case "d":
+            return .gray
+        case "l":
+            return .red
+        default:
+            return .cyan
+        
+        }
+            
+        }
+
+ 
+        }
+        
 
 
 

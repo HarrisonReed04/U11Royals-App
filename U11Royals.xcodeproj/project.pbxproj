@@ -12,9 +12,13 @@
 		84785D93289D6A70002ABBBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84785D92289D6A70002ABBBA /* Assets.xcassets */; };
 		84785D96289D6A70002ABBBA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84785D95289D6A70002ABBBA /* Preview Assets.xcassets */; };
 		84785D9D289D6C74002ABBBA /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84785D9C289D6C74002ABBBA /* HomePage.swift */; };
-		84785D9F289D6D28002ABBBA /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84785D9E289D6D28002ABBBA /* MatchesView.swift */; };
 		84785DA1289D745D002ABBBA /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84785DA0289D745D002ABBBA /* StatsView.swift */; };
 		84785DA3289D9C63002ABBBA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84785DA2289D9C63002ABBBA /* MainView.swift */; };
+		8495222C28A5B63A00FED6C0 /* statsgather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495222B28A5B63A00FED6C0 /* statsgather.swift */; };
+		8495223828AB328A00FED6C0 /* MatchesPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495223728AB328A00FED6C0 /* MatchesPresent.swift */; };
+		8495223A28AC5B1E00FED6C0 /* ShowMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495223928AC5B1E00FED6C0 /* ShowMatch.swift */; };
+		8495223C28AC5BE600FED6C0 /* MatchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495223B28AC5BE600FED6C0 /* MatchRow.swift */; };
+		8495223F28AD2C4200FED6C0 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495223E28AD2C4200FED6C0 /* Networking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +28,14 @@
 		84785D92289D6A70002ABBBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84785D95289D6A70002ABBBA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		84785D9C289D6C74002ABBBA /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
-		84785D9E289D6D28002ABBBA /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
 		84785DA0289D745D002ABBBA /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		84785DA2289D9C63002ABBBA /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8495222B28A5B63A00FED6C0 /* statsgather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsgather.swift; sourceTree = "<group>"; };
+		8495223728AB328A00FED6C0 /* MatchesPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesPresent.swift; sourceTree = "<group>"; };
+		8495223928AC5B1E00FED6C0 /* ShowMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMatch.swift; sourceTree = "<group>"; };
+		8495223B28AC5BE600FED6C0 /* MatchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRow.swift; sourceTree = "<group>"; };
+		8495223D28AD204500FED6C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8495223E28AD2C4200FED6C0 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +69,17 @@
 		84785D8D289D6A70002ABBBA /* U11Royals */ = {
 			isa = PBXGroup;
 			children = (
+				8495223D28AD204500FED6C0 /* Info.plist */,
 				84785D8E289D6A70002ABBBA /* U11RoyalsApp.swift */,
+				8495223728AB328A00FED6C0 /* MatchesPresent.swift */,
+				8495223B28AC5BE600FED6C0 /* MatchRow.swift */,
+				8495223928AC5B1E00FED6C0 /* ShowMatch.swift */,
 				84785DA2289D9C63002ABBBA /* MainView.swift */,
 				840E6B12289DB4C50062F0A3 /* SquadlistView.swift */,
 				84785D9C289D6C74002ABBBA /* HomePage.swift */,
-				84785D9E289D6D28002ABBBA /* MatchesView.swift */,
+				8495223E28AD2C4200FED6C0 /* Networking.swift */,
 				84785DA0289D745D002ABBBA /* StatsView.swift */,
+				8495222B28A5B63A00FED6C0 /* statsgather.swift */,
 				84785D92289D6A70002ABBBA /* Assets.xcassets */,
 				84785D94289D6A70002ABBBA /* Preview Content */,
 			);
@@ -150,10 +164,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84785D9F289D6D28002ABBBA /* MatchesView.swift in Sources */,
+				8495223A28AC5B1E00FED6C0 /* ShowMatch.swift in Sources */,
+				8495223F28AD2C4200FED6C0 /* Networking.swift in Sources */,
 				84785DA1289D745D002ABBBA /* StatsView.swift in Sources */,
+				8495223C28AC5BE600FED6C0 /* MatchRow.swift in Sources */,
+				8495222C28A5B63A00FED6C0 /* statsgather.swift in Sources */,
 				84785D9D289D6C74002ABBBA /* HomePage.swift in Sources */,
 				84785DA3289D9C63002ABBBA /* MainView.swift in Sources */,
+				8495223828AB328A00FED6C0 /* MatchesPresent.swift in Sources */,
 				84785D8F289D6A70002ABBBA /* U11RoyalsApp.swift in Sources */,
 				840E6B13289DB4C50062F0A3 /* SquadlistView.swift in Sources */,
 			);
@@ -287,6 +305,7 @@
 				DEVELOPMENT_TEAM = 7KX6Q7243F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = U11Royals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -316,6 +335,7 @@
 				DEVELOPMENT_TEAM = 7KX6Q7243F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = U11Royals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

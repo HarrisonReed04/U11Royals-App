@@ -21,7 +21,7 @@ struct MainView: View {
                     .tabItem{
                         Label("Home", systemImage:"house.fill")
                     }
-                MatchesView()
+                MatchesPresentView()
                     .tabItem{
                         Label("Matches", systemImage:"sportscourt.fill")
                     }
@@ -29,6 +29,7 @@ struct MainView: View {
                     .tabItem{
                         Label("Statistics", systemImage: "chart.bar.xaxis")
                     }
+
                 SquadlistView()
                     .tabItem{
                         Label("Squad List", systemImage: "person.3.sequence.fill")
@@ -36,7 +37,7 @@ struct MainView: View {
             }
             .foregroundColor(.white)
             .accentColor(.purple)
-            
+
         }
 }
 
